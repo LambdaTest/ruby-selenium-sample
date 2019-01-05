@@ -2,18 +2,20 @@ require 'selenium-webdriver'
 require 'test/unit'
 
 
-"""
-LambdaTest selenium automation sample example
-Configuration
-----------
-username: Username can be found at automation dashboard
-accessToken:  AccessToken can be generated from automation dashboard or profile section
 
-Result
--------
-Execute Ruby Automation Tests on LambdaTest Distributed Selenium Grid 
-"""
 class LtTest < Test::Unit::TestCase
+    """
+    LambdaTest selenium automation sample example
+    Configuration
+    ----------
+    username: Username can be found at automation dashboard
+    accessToken:  AccessToken can be generated from automation dashboard or profile section
+
+    Result
+    -------
+    Execute Ruby Automation Tests on LambdaTest Distributed Selenium Grid 
+    """
+
     
     def setup
         """
