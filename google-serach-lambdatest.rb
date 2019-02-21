@@ -31,7 +31,7 @@ class LtTest < Test::Unit::TestCase
         """
         username= "{username}"
         accessToken= "{accessToken}"
-        gridUrl = "beta-hub.lambdatest.com/wd/hub"
+        gridUrl = "hub.lambdatest.com/wd/hub"
  
         caps = {                       
             :browserName => "chrome",         
@@ -46,7 +46,7 @@ class LtTest < Test::Unit::TestCase
         }  
  
         puts (caps)
-        # URL: https://{username}:{accessToken}@beta-hub.lambdatest.com/wd/hub
+        # URL: https://{username}:{accessToken}@hub.lambdatest.com/wd/hub
         @driver = Selenium::WebDriver.for(:remote,
             :url => "https://"+username+":"+accessToken+"@"+gridUrl,
             :desired_capabilities => caps)
@@ -70,7 +70,6 @@ class LtTest < Test::Unit::TestCase
         elem = @driver.find_element(:name, 'q')
         elem.send_keys("lambdatest.com")
         elem.submit()
-
         puts("Printing title of current page :"+@driver.title)
     end
  
