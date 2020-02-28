@@ -1,4 +1,4 @@
-## Ruby unittest automation Lambdatest
+## Ruby UnitTest Automation Using Lambdatest
 
 Ruby selenium automation sample test for Lambdatest Cloud GRID.
 
