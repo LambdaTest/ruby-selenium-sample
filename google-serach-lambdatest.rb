@@ -39,10 +39,10 @@ class LtTest < Test::Unit::TestCase
             :platform =>  "win10",
             :name =>  "LambdaTest ruby google search name",
             :build =>  "LambdaTest ruby google search build",      
-            :network =>  true,
-            :visual =>  true,
+            :network =>  false,
+            :visual =>  false,
             :video =>  true,
-            :console =>  true
+            :console =>  false
         }  
  
         puts (caps)
