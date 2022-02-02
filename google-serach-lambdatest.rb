@@ -29,14 +29,15 @@ class LtTest < Test::Unit::TestCase
         Result
         -------
         """
-        username= "{username}"
-        accessToken= "{accessToken}"
+        username= ENV["LT_USERNAME"] || "{username}"
+        accessToken= ENV["LT_ACCESS_KEY"] || "{accessToken}"
         gridUrl = "hub.lambdatest.com/wd/hub"
  
         caps = {                       
             :browserName => "chrome",         
             :version =>   "67.0",         
             :platform =>  "win10",
+            :geoLocation =>  "US",
             :name =>  "LambdaTest ruby google search name",
             :build =>  "LambdaTest ruby google search build",      
             :network =>  false,
@@ -66,7 +67,7 @@ class LtTest < Test::Unit::TestCase
         """
         puts("Searching lambdatest on google.com ")
         sleep(15)
-        @driver.get("https://www.google.com/ncr")
+        @driver.get("https://www.google.com")
         elem = @driver.find_element(:name, 'q')
         elem.send_keys("lambdatest.com")
         elem.submit()
