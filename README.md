@@ -35,7 +35,7 @@ gem install selenium-webdriver
 ```
 Step 4. Run your test.
 ```
-ruby google-serach-lambdatest.rb
+ruby todo-click-test.rb
 ```
 
 ## About LambdaTest

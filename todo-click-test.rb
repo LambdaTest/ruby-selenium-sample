@@ -37,7 +37,6 @@ class LtTest < Test::Unit::TestCase
             :browserName => "chrome",         
             :version =>   "67.0",         
             :platform =>  "win10",
-            :geoLocation =>  "US",
             :name =>  "LambdaTest ruby google search name",
             :build =>  "LambdaTest ruby google search build",      
             :network =>  false,
@@ -60,18 +59,21 @@ class LtTest < Test::Unit::TestCase
         Setup remote driver
         Params
         ----------
-        Execute test:  navigate google.com search LambdaTest
+        Execute test:  navigate to https://lambdatest.github.io/sample-todo-app/
+        Click Elements: Finf lsit elements by name and click them.
         Result
         -------
-        print title
+        print Success Message
         """
         puts("Searching lambdatest on google.com ")
         sleep(15)
-        @driver.get("https://www.google.com")
-        elem = @driver.find_element(:name, 'q')
-        elem.send_keys("lambdatest.com")
-        elem.submit()
-        puts("Printing title of current page :"+@driver.title)
+        @driver.get("https://lambdatest.github.io/sample-todo-app/")
+        elem1 = @driver.find_element(:name, 'li1')
+        elem1.click;
+
+        elem2 = @driver.find_element(:name, 'li2')
+        elem2.click;
+        puts("Test Runned Successfully.")
     end
  
   
