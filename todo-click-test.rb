@@ -29,8 +29,8 @@ class LtTest < Test::Unit::TestCase
         Result
         -------
         """
-        username= "{username}"
-        accessToken= "{accessToken}"
+        username= ENV["LT_USERNAME"] || "{username}"
+        accessToken= ENV["LT_ACCESS_KEY"] || "{accessToken}"
         gridUrl = "hub.lambdatest.com/wd/hub"
  
         caps = {                       
@@ -59,18 +59,21 @@ class LtTest < Test::Unit::TestCase
         Setup remote driver
         Params
         ----------
-        Execute test:  navigate google.com search LambdaTest
+        Execute test:  navigate to https://lambdatest.github.io/sample-todo-app/
+        Click Elements: Finf lsit elements by name and click them.
         Result
         -------
-        print title
+        print Success Message
         """
         puts("Searching lambdatest on google.com ")
         sleep(15)
-        @driver.get("https://www.google.com/ncr")
-        elem = @driver.find_element(:name, 'q')
-        elem.send_keys("lambdatest.com")
-        elem.submit()
-        puts("Printing title of current page :"+@driver.title)
+        @driver.get("https://lambdatest.github.io/sample-todo-app/")
+        elem1 = @driver.find_element(:name, 'li1')
+        elem1.click;
+
+        elem2 = @driver.find_element(:name, 'li2')
+        elem2.click;
+        puts("Test Runned Successfully.")
     end
  
   
