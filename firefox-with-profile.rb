@@ -40,10 +40,10 @@ class LtTest < Test::Unit::TestCase
  
        puts("Download test")
        sleep(5)
-       @driver.get("https://the-internet.herokuapp.com/download")
-       elem1 = @driver.find_element(:xpath, "//*[contains(text(), 'LambdaTest.')]")
+       @driver.get("http://www.pdf995.com/samples")
+       elem1 = @driver.find_element(:xpath, "//*[contains(text(), 'widgets.pdf')]")
        elem1.click;
-    if (@driver.execute_script('lambda-file-exists=LambdaTest.txt'))
+    if (@driver.execute_script('lambda-file-exists=widgets.pdf'))
         @driver.execute_script('lambda-status=passed');
        else
        @driver.execute_script('lambda-status=failed');
