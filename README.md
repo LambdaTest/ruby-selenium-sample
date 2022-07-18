@@ -57,7 +57,7 @@ cd ruby-selenium-sample
 ```
 Install selenium dependencies for Ruby automation testing.
 ```bash
-sudo gem install selenium-webdriver
+sudo gem install selenium-webdriver -v 3.142.7
 ```
 ### Setting up Your Authentication
 Make sure you have your LambdaTest credentials with you to run test automation scripts with Jest on LambdaTest Selenium Grid. You can obtain these credentials from the [LambdaTest Automation Dashboard](https://automation.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=ruby-selenium-sample) or through LambdaTest Profile.
