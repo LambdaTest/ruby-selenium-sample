@@ -18,17 +18,19 @@ class LtTest < Test::Unit::TestCase
        profile['pdfjs.disabled'] = true
  
        caps = {                      
-           :browserName => "firefox",        
-           :version =>   "latest",        
-           :platform =>  "win10",  
-           :network =>  true,
-           :selenium_version => "3.141.59",
-           :visual =>  true,
-           :video =>  true,
-           :console =>  true,
-           :javascriptEnabled => true,
-           :build => "firefox-profile-test",
-           :firefox_profile => profile
+        "LT:Options" => {
+            :browserName => "firefox",        
+            :version =>   "latest",        
+            :platform =>  "win10",  
+            :network =>  true,
+            :selenium_version => "3.141.59",
+            :visual =>  true,
+            :video =>  true,
+            :console =>  true,
+            :javascriptEnabled => true,
+            :build => "firefox-profile-test",
+            :firefox_profile => profile
+         }
        } 
        puts (caps)
        @driver = Selenium::WebDriver.for(:remote,

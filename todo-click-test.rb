@@ -34,22 +34,24 @@ class LtTest < Test::Unit::TestCase
         gridUrl = "hub.lambdatest.com/wd/hub"
  
         caps = {                       
-            :browserName => "chrome",         
-            :version =>   "67.0",         
-            :platform =>  "win10",
-            :name =>  "LambdaTest ruby google search name",
-            :build =>  "LambdaTest ruby google search build",      
-            :network =>  false,
-            :visual =>  false,
-            :video =>  true,
-            :console =>  false
+            "LT:Options" => {
+                :browserName => "chrome",         
+                :version =>   "latest",         
+                :platform =>  "win10",
+                :name =>  "LambdaTest ruby google search name",
+                :build =>  "LambdaTest ruby google search build",      
+                :network =>  false,
+                :visual =>  false,
+                :video =>  true,
+                :console =>  false
+            }
         }  
  
         puts (caps)
         # URL: https://{username}:{accessToken}@hub.lambdatest.com/wd/hub
         @driver = Selenium::WebDriver.for(:remote,
             :url => "https://"+username+":"+accessToken+"@"+gridUrl,
-            :desired_capabilities => caps)
+            :capabilities => caps)
     end
  
 
@@ -65,8 +67,8 @@ class LtTest < Test::Unit::TestCase
         -------
         print Success Message
         """
-        puts("Searching lambdatest on google.com ")
-        sleep(15)
+        puts("Lambdatest sample ToDo App")
+        sleep(10)
         @driver.get("https://lambdatest.github.io/sample-todo-app/")
         elem1 = @driver.find_element(:name, 'li1')
         elem1.click;
