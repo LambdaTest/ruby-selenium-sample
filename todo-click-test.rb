@@ -35,7 +35,7 @@ class LtTest < Test::Unit::TestCase
  
         caps = {                       
             :browserName => "chrome",         
-            :version =>   "67.0",         
+            :version =>   "latest",         
             :platform =>  "win10",
             :name =>  "LambdaTest ruby google search name",
             :build =>  "LambdaTest ruby google search build",      
