@@ -74,7 +74,7 @@ class LtTest < Test::Unit::TestCase
         sleep(5)
         @driver.close
         sleep(5)
-        @driver.execute_script("window.close('https://google.com/')")
+        @driver.execute_script("window.close('http://www.pdf995.com/samples')")
         
         puts("Test Ran Successfully.")
     end
