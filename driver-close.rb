@@ -68,11 +68,10 @@ class LtTest < Test::Unit::TestCase
         puts("Searching lambdatest on google.com ")
         sleep(15)
         @driver.get("https://lambdatest.github.io/sample-todo-app/")
-        elem1 = @driver.find_element(:name, 'li1')
-        elem1.click;
-
-        elem2 = @driver.find_element(:name, 'li2')
-        elem2.click;
+        @driver.execute_script("window.open('https://google.com/')")
+        sleep(5)
+        @driver.close()
+        
         puts("Test Runned Successfully.")
     end
  
@@ -82,7 +81,7 @@ class LtTest < Test::Unit::TestCase
         """
         Quit selenium driver
         """
-        @driver.close
+        @driver.quit
     end
  
  
