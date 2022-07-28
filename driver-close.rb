@@ -71,7 +71,7 @@ class LtTest < Test::Unit::TestCase
         sleep(5)
         @driver.switch_to.window(@driver.window_handles.last)
         sleep(5)
-        @driver.close
+        @driver.close(@driver.window_handles.last)
         sleep(5)
         
         puts("Test Ran Successfully.")
