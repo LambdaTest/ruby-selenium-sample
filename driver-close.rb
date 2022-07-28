@@ -69,7 +69,7 @@ class LtTest < Test::Unit::TestCase
         @driver.get("https://lambdatest.github.io/sample-todo-app/")
         @driver.execute_script("window.open('https://google.com/')")
         sleep(5)
-        @driver.switch_to.window(driver.window_handles.last)
+        @driver.switch_to.window(@driver.window_handles.last)
         sleep(5)
         @driver.close
         sleep(5)
