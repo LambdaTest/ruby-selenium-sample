@@ -60,19 +60,19 @@ class LtTest < Test::Unit::TestCase
         Params
         ----------
         Execute test:  navigate to https://lambdatest.github.io/sample-todo-app/
-        Click Elements: Finf lsit elements by name and click them.
         Result
         -------
         print Success Message
         """
-        puts("Searching lambdatest on google.com ")
-        sleep(15)
+        puts("Opening 2 tabs")
+        sleep(5)
         @driver.get("https://lambdatest.github.io/sample-todo-app/")
         @driver.execute_script("window.open('https://google.com/')")
         sleep(5)
-        @driver.close()
+        @driver.close
+        sleep(5)
         
-        puts("Test Runned Successfully.")
+        puts("Test Ran Successfully.")
     end
  
   
