@@ -69,12 +69,25 @@ class LtTest < Test::Unit::TestCase
         @driver.get("https://lambdatest.github.io/sample-todo-app/")
         @driver.execute_script("window.open('https://google.com/')")
         @driver.execute_script("window.open('http://www.pdf995.com/samples')")
+        tabs = @driver.getWindowHandles
+        if(tabs.size != 3)
+            @driver.execute_script('lambda-status=failed');
         sleep(5)
         @driver.execute_script("window.close('http://www.pdf995.com/samples')")
+        tabs = @driver.getWindowHandles
+        if(tabs.size != 2)
+            @driver.execute_script('lambda-status=failed');
         sleep(5)
         @driver.close()
+        tabs = @driver.getWindowHandles
+        if(tabs.size != 1)
+            @driver.execute_script('lambda-status=failed');
         sleep(5)
-        
+        elem1 = @driver.find_element(:name, 'li1')
+        elem1.click;
+
+        elem2 = @driver.find_element(:name, 'li2')
+        elem2.click;
         puts("Test Ran Successfully.")
     end
  
