@@ -70,7 +70,7 @@ class LtTest < Test::Unit::TestCase
         @driver.execute_script("window.open('https://google.com/')")
         @driver.execute_script("window.open('http://www.pdf995.com/samples')")
         tabs = @driver.window_handles
-        puts(tab)
+        puts(tabs)
         puts(tabs.size)
         if(tabs.size != 3)
             @driver.execute_script('lambda-status=failed');
@@ -78,7 +78,7 @@ class LtTest < Test::Unit::TestCase
         sleep(5)
         @driver.execute_script("window.close('http://www.pdf995.com/samples')")
         tabs = @driver.window_handles
-        puts(tab)
+        puts(tabs)
         puts(tabs.size)
         if(tabs.size != 2)
             @driver.execute_script('lambda-status=failed');
@@ -86,7 +86,7 @@ class LtTest < Test::Unit::TestCase
         sleep(5)
         @driver.close()
         tabs = @driver.window_handles
-        puts(tab)
+        puts(tabs)
         puts(tabs.size)
         if(tabs.size != 1)
             @driver.execute_script('lambda-status=failed');
