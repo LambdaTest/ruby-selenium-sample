@@ -72,16 +72,19 @@ class LtTest < Test::Unit::TestCase
         tabs = @driver.getWindowHandles
         if(tabs.size != 3)
             @driver.execute_script('lambda-status=failed');
+        end
         sleep(5)
         @driver.execute_script("window.close('http://www.pdf995.com/samples')")
         tabs = @driver.getWindowHandles
         if(tabs.size != 2)
             @driver.execute_script('lambda-status=failed');
+        end
         sleep(5)
         @driver.close()
         tabs = @driver.getWindowHandles
         if(tabs.size != 1)
             @driver.execute_script('lambda-status=failed');
+        end
         sleep(5)
         elem1 = @driver.find_element(:name, 'li1')
         elem1.click;
