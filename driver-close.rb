@@ -77,7 +77,7 @@ class LtTest < Test::Unit::TestCase
         end
         sleep(5)
         @driver.switch_to.window(@driver.window_handles.last)
-        @driver.execute_script("window.close(('http://www.pdf995.com/samples')")
+        @driver.execute_script("window.close('http://www.pdf995.com/samples')")
         tabs = @driver.window_handles
         puts(tabs)
         puts(tabs.size)
