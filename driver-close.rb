@@ -86,7 +86,7 @@ class LtTest < Test::Unit::TestCase
         @driver.switch_to.window(@driver.window_handles.last)
         @driver.close
         tabs = @driver.window_handles
-        assert_equal(1, tabs.size, "Expected 1 tab but found"+tabs.size.to_s)
+        assert_equal(2, tabs.size, "Expected 1 tab but found"+tabs.size.to_s)
         # if(tabs.size != 1)
         #     @driver.execute_script('lambda-status=failed');
         # end
