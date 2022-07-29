@@ -94,6 +94,7 @@ class LtTest < Test::Unit::TestCase
             @driver.execute_script('lambda-status=failed');
         end
         sleep(5)
+        @driver.switch_to.window(@driver.window_handles.last)
         elem1 = @driver.find_element(:name, 'li1')
         elem1.click;
 
