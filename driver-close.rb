@@ -76,7 +76,7 @@ class LtTest < Test::Unit::TestCase
             @driver.execute_script('lambda-status=failed');
         end
         sleep(5)
-        driver.switch_to(tabs[tabs.size-1])
+        @driver.switch_to(tabs[tabs.size-1])
         @driver.execute_script("window.close(('http://www.pdf995.com/samples')")
         tabs = @driver.window_handles
         puts(tabs)
