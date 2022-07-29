@@ -70,29 +70,26 @@ class LtTest < Test::Unit::TestCase
         @driver.execute_script("window.open('https://google.com/')")
         @driver.execute_script("window.open('http://www.pdf995.com/samples')")
         tabs = @driver.window_handles
-        puts(tabs)
-        puts(tabs.size)
-        if(tabs.size != 3)
-            @driver.execute_script('lambda-status=failed');
-        end
+        assert_equal(3, tabs.size, "Expected 3 tabs but found"+tabs.size)
+        # if(tabs.size != 3)
+        #     @driver.execute_script('lambda-status=failed');
+        # end
         sleep(5)
         @driver.switch_to.window(@driver.window_handles.last)
         @driver.execute_script("window.close('http://www.pdf995.com/samples')")
         tabs = @driver.window_handles
-        puts(tabs)
-        puts(tabs.size)
-        if(tabs.size != 2)
-            @driver.execute_script('lambda-status=failed');
-        end
+        assert_equal(2, tabs.size, "Expected 2 tabs but found"+tabs.size)
+        # if(tabs.size != 2)
+        #     @driver.execute_script('lambda-status=failed');
+        # end
         sleep(5)
         @driver.switch_to.window(@driver.window_handles.last)
         @driver.close
         tabs = @driver.window_handles
-        puts(tabs)
-        puts(tabs.size)
-        if(tabs.size != 1)
-            @driver.execute_script('lambda-status=failed');
-        end
+        assert_equal(1, tabs.size, "Expected 1 tab but found"+tabs.size)
+        # if(tabs.size != 1)
+        #     @driver.execute_script('lambda-status=failed');
+        # end
         sleep(5)
         @driver.switch_to.window(@driver.window_handles.last)
         elem1 = @driver.find_element(:name, 'li1')
