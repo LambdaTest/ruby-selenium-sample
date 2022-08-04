@@ -64,17 +64,30 @@ class LtTest < Test::Unit::TestCase
         -------
         print Success Message
         """
-        puts("Opening 2 tabs")
-        sleep(5)
+        puts("Opening 3 tabs")
+        sleep(2)
         @driver.get("https://lambdatest.github.io/sample-todo-app/")
         @driver.execute_script("window.open('https://google.com/')")
         @driver.execute_script("window.open('http://www.pdf995.com/samples')")
-        sleep(5)
+        tabs = @driver.window_handles
+        assert_equal(3, tabs.size, "Expected 3 tabs but found " + tabs.size.to_s)
+        sleep(2)
+        @driver.switch_to.window(@driver.window_handles.last)
         @driver.execute_script("window.close('http://www.pdf995.com/samples')")
+        tabs = @driver.window_handles
+        assert_equal(2, tabs.size, "Expected 2 tabs but found " + tabs.size.to_s)
+        sleep(2)
+        @driver.switch_to.window(@driver.window_handles.last)
+        @driver.close
+        tabs = @driver.window_handles
+        assert_equal(1, tabs.size, "Expected 1 tab but found " + tabs.size.to_s)
         sleep(5)
-        @driver.close()
-        sleep(5)
-        
+        @driver.switch_to.window(@driver.window_handles.last)
+        elem1 = @driver.find_element(:name, 'li1')
+        elem1.click;
+
+        elem2 = @driver.find_element(:name, 'li2')
+        elem2.click;
         puts("Test Ran Successfully.")
     end
  

@@ -73,7 +73,7 @@ class LtTest < Test::Unit::TestCase
 
         elem2 = @driver.find_element(:name, 'li2')
         elem2.click;
-        puts("Test Runned Successfully.")
+        puts("Test Ran Successfully.")
     end
  
   
