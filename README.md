@@ -57,7 +57,8 @@ cd ruby-selenium-sample
 ```
 Install selenium dependencies for Ruby automation testing.
 ```bash
-sudo gem install selenium-webdriver -v 3.142.7
+gem install bundler
+bundle install
 ```
 ### Setting up Your Authentication
 Make sure you have your LambdaTest credentials with you to run test automation scripts with Jest on LambdaTest Selenium Grid. You can obtain these credentials from the [LambdaTest Automation Dashboard](https://automation.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=ruby-selenium-sample) or through LambdaTest Profile.
@@ -80,8 +81,8 @@ In the test script, you need to update your test capabilities. In this code, we 
 ```ruby
 caps = {                       
             :browserName => "chrome",         
-            :version =>   "67.0",         
-            :platform =>  "win10",
+            :version =>   "latest",         
+            :platform =>  "windows 10",
             :geoLocation =>  "US",
             :name =>  "LambdaTest ruby google search name",
             :build =>  "LambdaTest ruby google search build",      
@@ -97,7 +98,7 @@ caps = {
 
 To execute the test script, run the following script on terminal/cmd.
 ```bash
-ruby todo-click-test.rb
+bundle exec ruby todo-click-test.rb 
 ```
 Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on [LambdaTest automation dashboard](https://automation.lambdatest.com/build/?utm_source=github&utm_medium=repo&utm_campaign=ruby-selenium-sample). LambdaTest Automation Dashboard will help you view all your text logs, screenshots and video recording for your entire automation tests.
 
