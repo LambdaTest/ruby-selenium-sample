@@ -1,104 +1,67 @@
 require 'selenium-webdriver'
 require 'test/unit'
 
-
-
 class LtTest < Test::Unit::TestCase
-    """
-    LambdaTest selenium automation sample example
-    Configuration
-    ----------
-    username: Username can be found at automation dashboard
-    accessToken:  AccessToken can be generated from automation dashboard or profile section
+  def setup
+    username = ENV["LT_USERNAME"] || "{username}"
+    access_key = ENV["LT_ACCESS_KEY"] || "{accessToken}"
+    grid_url = "https://#{username}:#{access_key}@hub.lambdatest.com/wd/hub"
 
-    Result
-    -------
-    Execute Ruby Automation Tests on LambdaTest Distributed Selenium Grid 
-    """
+    # Chrome Options (Selenium 4 style)
+    options = Selenium::WebDriver::Options.chrome
+    options.browser_version = "latest"
+    options.platform_name = "Windows 10"
 
-    
-    def setup
-        """
-        Setup remote driver
-        Params
-        ----------
-        platform : Supported platform - (Windows 10, Windows 8.1, Windows 8, Windows 7,  macOS High Sierra, macOS Sierra, OS X El Capitan, OS X Yosemite, OS X Mavericks)
-        browserName : Supported platform - (chrome, firefox, Internet Explorer, MicrosoftEdge)
-        version :  Supported list of version can be found at https://www.lambdatest.com/capabilities-generator/
+    # LambdaTest options
+    lt_options = {
+      "project" => "Ruby Chrome Multi-Tab Test",
+      "build" => "LambdaTest ruby google search build",
+      "name" => "LambdaTest ruby google search name",
+      "network" => false,
+      "visual" => false,
+      "video" => true,
+      "console" => false
+    }
+    options.add_option('LT:Options', lt_options)
 
-        Result
-        -------
-        """
-        username= ENV["LT_USERNAME"] || "{username}"
-        accessToken= ENV["LT_ACCESS_KEY"] || "{accessToken}"
-        gridUrl = "hub.lambdatest.com/wd/hub"
- 
-        caps = {                       
-            :browserName => "chrome",         
-            :version =>   "latest",         
-            :platform =>  "win10",
-            :name =>  "LambdaTest ruby google search name",
-            :build =>  "LambdaTest ruby google search build",      
-            :network =>  false,
-            :visual =>  false,
-            :video =>  true,
-            :console =>  false
-        }  
- 
-        puts (caps)
-        # URL: https://{username}:{accessToken}@hub.lambdatest.com/wd/hub
-        @driver = Selenium::WebDriver.for(:remote,
-            :url => "https://"+username+":"+accessToken+"@"+gridUrl,
-            :desired_capabilities => caps)
-    end
- 
+    # Start driver
+    @driver = Selenium::WebDriver.for(:remote, url: grid_url, capabilities: options)
+  end
 
+  def test_Login
+    puts("Opening multiple tabs test...")
+    @driver.navigate.to("https://lambdatest.github.io/sample-todo-app/")
+    @driver.execute_script("window.open('https://google.com/')")
+    @driver.execute_script("window.open('http://www.pdf995.com/samples')")
 
-    def test_Login
-        """
-        Setup remote driver
-        Params
-        ----------
-        Execute test:  navigate to https://lambdatest.github.io/sample-todo-app/
-        Result
-        -------
-        print Success Message
-        """
-        puts("Opening 3 tabs")
-        sleep(2)
-        @driver.get("https://lambdatest.github.io/sample-todo-app/")
-        @driver.execute_script("window.open('https://google.com/')")
-        @driver.execute_script("window.open('http://www.pdf995.com/samples')")
-        tabs = @driver.window_handles
-        assert_equal(3, tabs.size, "Expected 3 tabs but found " + tabs.size.to_s)
-        sleep(2)
-        @driver.switch_to.window(@driver.window_handles.last)
-        @driver.execute_script("window.close('http://www.pdf995.com/samples')")
-        tabs = @driver.window_handles
-        assert_equal(2, tabs.size, "Expected 2 tabs but found " + tabs.size.to_s)
-        sleep(2)
-        @driver.switch_to.window(@driver.window_handles.last)
-        @driver.close
-        tabs = @driver.window_handles
-        assert_equal(1, tabs.size, "Expected 1 tab but found " + tabs.size.to_s)
-        sleep(5)
-        @driver.switch_to.window(@driver.window_handles.last)
-        elem1 = @driver.find_element(:name, 'li1')
-        elem1.click;
+    tabs = @driver.window_handles
+    assert_equal(3, tabs.size, "Expected 3 tabs but found #{tabs.size}")
+    sleep(1)
 
-        elem2 = @driver.find_element(:name, 'li2')
-        elem2.click;
-        puts("Test Ran Successfully.")
-    end
- 
-  
- 
-    def teardown
-        """
-        Quit selenium driver
-        """
-        @driver.quit
-    end
- 
- 
+    # Close last tab
+    @driver.switch_to.window(@driver.window_handles.last)
+    @driver.close
+    assert_equal(2, @driver.window_handles.size)
+
+    # Close another tab
+    @driver.switch_to.window(@driver.window_handles.last)
+    @driver.close
+    assert_equal(1, @driver.window_handles.size)
+
+    # Back to main and perform actions
+    @driver.switch_to.window(@driver.window_handles.last)
+    elem1 = @driver.find_element(:name, 'li1')
+    elem2 = @driver.find_element(:name, 'li2')
+    elem1.click
+    elem2.click
+    puts("Test executed successfully.")
+    @driver.execute_script('lambda-status=passed')
+  rescue => e
+    @driver.execute_script('lambda-status=failed')
+    raise e
+  end
+
+  def teardown
+    @driver.quit
+  end
 end
