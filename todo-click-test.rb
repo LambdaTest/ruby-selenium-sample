@@ -28,9 +28,10 @@ driver.find_element(:name, 'li1').click
 driver.find_element(:name, 'li2').click
 driver.find_element(:id, 'sampletodotext').send_keys("Yey, Let's add it to list")
 driver.find_element(:id, 'addbutton').click
-enteredText = driver.find_element(:xpath, '/html/body/div/div/div/ul/li[5]/span').text
-enteredText == "Fifth Item" ? status = "passed" : status = "failed"
+enteredText = driver.find_element(:xpath, '/html/body/div/div/div/ul/li[6]/span').text
+enteredText == "Yey, Let's add it to list" ? status = "passed" : status = "failed"
 driver.execute_script('lambda-status='+ status)
 end
 print("Execution Successful\n")
 driver.quit
+
