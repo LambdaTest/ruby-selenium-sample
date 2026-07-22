@@ -23,12 +23,12 @@ driver = Selenium::WebDriver.for(:remote,
 :url => "https://hub.lambdatest.com/wd/hub",
 :capabilities => options)
 begin
-driver.navigate.to "https://lambdatest.github.io/sample-todo-app/"
+driver.navigate.to "https://www.testmuai.com/selenium-playground/todo-app/"
 driver.find_element(:name, 'li1').click
 driver.find_element(:name, 'li2').click
 driver.find_element(:id, 'sampletodotext').send_keys("Yey, Let's add it to list")
 driver.find_element(:id, 'addbutton').click
-enteredText = driver.find_element(:xpath, '/html/body/div/div/div/ul/li[6]/span').text
+enteredText = driver.find_element(:xpath, "//input[@name='li6']/following-sibling::span").text
 enteredText == "Yey, Let's add it to list" ? status = "passed" : status = "failed"
 driver.execute_script('lambda-status='+ status)
 end
