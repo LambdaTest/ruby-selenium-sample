@@ -30,7 +30,7 @@ class LtTest < Test::Unit::TestCase
 
   def test_Login
     puts("Opening multiple tabs test...")
-    @driver.navigate.to("https://lambdatest.github.io/sample-todo-app/")
+    @driver.navigate.to("https://www.testmuai.com/selenium-playground/todo-app/")
     @driver.execute_script("window.open('https://google.com/')")
     @driver.execute_script("window.open('http://www.pdf995.com/samples')")
 
